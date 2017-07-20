@@ -862,7 +862,7 @@ public class SettingsUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        conn.DeleteField(moduleList.getSelectedItem().toString(), fieldsTable.getValueAt(fieldsTable.getSelectedRow(), 2).toString());
+        conn.DeleteField(moduleList.getSelectedItem().toString(), fieldsTable.getValueAt(fieldsTable.getSelectedRow(), 1).toString());
         JtableUtils.deleterow(fieldsTable);
     }//GEN-LAST:event_jButton6ActionPerformed
 
