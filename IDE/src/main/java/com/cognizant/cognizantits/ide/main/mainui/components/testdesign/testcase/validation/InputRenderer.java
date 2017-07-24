@@ -85,9 +85,13 @@ public class InputRenderer extends AbstractRenderer {
 
     private Boolean isTestDataPresent(TestStep step) {
         String[] data = step.getTestDataFromInput();
-        TestDataModel tdModelEnv = step.getProject().getTestData().getTestDataByName(data[0]);
-        TestDataModel tdModelDef = step.getProject().getTestData().defData().getByName(data[0]);
-        return hasColumn(tdModelEnv, data[1]) || hasColumn(tdModelDef, data[1]);
+        for (TestData sTestData : step.getProject().getTestData().getAllEnvironments()) {
+            TestDataModel tdModelDef = sTestData.getByName(data[0]);
+            if (hasColumn(tdModelDef, data[1])) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private boolean hasColumn(TestDataModel tdModel, String column) {
