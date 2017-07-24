@@ -15,7 +15,6 @@
  */
 package com.cognizant.cognizantits.ide.main.mainui.components.testdesign.testcase.validation;
 
-import com.cognizant.cognizantits.datalib.component.TestData;
 import com.cognizant.cognizantits.datalib.component.TestStep;
 import com.cognizant.cognizantits.datalib.testdata.model.TestDataModel;
 import com.cognizant.cognizantits.engine.support.methodInf.MethodInfoManager;
@@ -86,13 +85,10 @@ public class InputRenderer extends AbstractRenderer {
 
     private Boolean isTestDataPresent(TestStep step) {
         String[] data = step.getTestDataFromInput();
-        for (TestData sTestData : step.getProject().getTestData().getAllEnvironments()) {
-            TestDataModel tdModelDef = sTestData.getByName(data[0]);
-            if (hasColumn(tdModelDef, data[1])) {
-                return true;
-            }
-        }
-        return false;
+        return step.getProject().getTestData().getAllEnvironments()
+                .stream()
+                .map((sTestData) -> sTestData.getByName(data[0]))
+                .anyMatch((tdModelDef) -> hasColumn(tdModelDef, data[1]));
     }
 
     private boolean hasColumn(TestDataModel tdModel, String column) {
