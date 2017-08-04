@@ -355,7 +355,7 @@ public class TestCaseAutoSuggest {
         public void afterReset() {
             prevText = null;
             isPending = false;
-            if (!getText().isEmpty() && !getText().matches("^[\\%|\\@].*") && !getText().contains(":")) {
+            if (!getText().isEmpty() && !getText().matches("^[\\%|\\@|\\=].*") && !getText().contains(":")) {
                 startEditing(this);
             }
         }
